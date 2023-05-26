@@ -1,24 +1,29 @@
-import logo from './logo.svg';
+import { useEffect, useState } from 'react';
 import './App.css';
+import MainContainer from './components/MainContainer';
+import axios from 'axios';
+
+const API_URL = 'https://amatoscar.pt/gap/apis/nos/callshistory.php';
 
 function App() {
+  const [calls, setCalls] = useState({});
+
+  useEffect(() => {
+    const getCallData = () => {
+      axios.get(API_URL)
+      .then((response) => {
+        setCalls(response.data)
+      })
+      .catch((error) => {
+        console.error('Error fetching call data:', error)
+      })
+    }
+
+    getCallData()
+  }, [])
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <MainContainer calls={calls} />
   );
 }
 
