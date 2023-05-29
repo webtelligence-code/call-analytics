@@ -1,78 +1,63 @@
-import { Badge, Popover } from 'antd';
-import React, { useState } from 'react'
-import { Card, Col, Row, Spinner } from 'react-bootstrap'
-import { FcMissedCall, FcPhone, FcCallback } from "react-icons/fc";
+import { Badge } from 'antd';
+import React from 'react'
+import { Card, Spinner } from 'react-bootstrap'
 import CallsInfo from './CallsInfo';
+import { IoIosCall } from "react-icons/io";
 import Charts from './Charts';
 
 const TopContainer = ({ calls }) => {
-  const [open, setOpen] = useState(false);
-
-  const hide = () => {
-    setOpen(false);
-  };
-
-  const handleOpenChange = (newOpen) => {
-    setOpen(newOpen);
-  };
-
   return (
-    <Card className='mb-3 shadow'>
-      <Card.Header
-        className='text-center shadow-sm'
-        style={{
-          borderBottomLeftRadius: 5,
-          borderBottomRightRadius: 5,
-          alignItems: 'center',
-          backgroundColor: 'white',
-        }}
-        as={'h5'}
+    <Card
+      className='mb-3 shadow'
+      style={{ width: '100%' }}
+    >
+      <Badge.Ribbon
+        placement='end'
+        text={
+          calls.totalExternos ? (
+            <label
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+              }}
+            >
+              <IoIosCall className='me-2' size={20} />
+              {calls.totalExternos}
+            </label>
+          ) : (
+            <Spinner style={{ color: 'white' }} size='sm'>
+              <span className='visually-hidden'>A carregar...</span>
+            </Spinner>
+          )
+        }
+        color='#ed6337'
       >
-        Todas as chamadas
-        <Badge size='large' className='ms-2' count={calls.total} showZero overflowCount={calls.total} color="#ed6337" />
-      </Card.Header>
+        <Card.Header
+          className='text-center shadow-sm'
+          style={{
+            borderBottomLeftRadius: 5,
+            borderBottomRightRadius: 5,
+            backgroundColor: 'white',
+          }}
+          as={'h5'}
+        >
+          Chamadas Externas
+        </Card.Header>
+      </Badge.Ribbon>
+
       <Card.Body>
-        <CallsInfo calls={calls}/>
-        <Charts calls={calls} />
+        <CallsInfo
+          recebidas={calls.recebidas}
+          devolvidas={null}
+          nDevolvidas={null}
+          perdidas={calls.perdidas}
+          efetuadas={calls.efetuadas}
+          show={[true, false, false, true, true]}
+        />
+        <Charts calls={calls} show={[false, false, true, true, false]} />
       </Card.Body>
-      <Card.Footer>
-        <Row className='text-center'>
-          <Col>
-            <Popover
-              content={<a onClick={hide}>Close</a>}
-              title="Title"
-              trigger="click"
-              open={open}
-              onOpenChange={handleOpenChange}
-            >
-              <button type="primary">Click me</button>
-            </Popover>
-          </Col>
-          <Col>
-            <Popover
-              content={<a onClick={hide}>Close</a>}
-              title="Title"
-              trigger="click"
-              open={open}
-              onOpenChange={handleOpenChange}
-            >
-              <button type="primary">Click me</button>
-            </Popover>
-          </Col>
-          <Col>
-            <Popover
-              content={<a onClick={hide}>Close</a>}
-              title="Title"
-              trigger="click"
-              open={open}
-              onOpenChange={handleOpenChange}
-            >
-              <button type="primary">Click me</button>
-            </Popover>
-          </Col>
-        </Row>
-      </Card.Footer>
-    </Card>
+    </Card >
   )
 }
 

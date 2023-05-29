@@ -1,61 +1,99 @@
-import React from 'react'
+import React, { Fragment } from 'react'
 import { Col, Row, Spinner } from 'react-bootstrap'
 import { FcCallback, FcMissedCall, FcPhone } from 'react-icons/fc'
 
-const CallsInfo = ({ calls }) => {
+const CallsInfo = ({ recebidas, devolvidas, nDevolvidas, perdidas, efetuadas, show }) => {
   return (
     <Row className='text-center'>
-      <Col>
-        {calls.recebidas ? (
-          <h4 style={{ color: '#388e3c' }}>{calls.recebidas}</h4>
-        ) : (
-          <div>
-            <Spinner style={{ color: '#388e3c' }}>
-              <span className='visually-hidden'>A carregar...</span>
-            </Spinner>
-          </div>
-        )}
-        <label style={{ fontSize: 18 }}>Recebidas <FcPhone size={30} /></label>
-      </Col>
+      {show[0] && (
+        <Col>
+          {recebidas ? (
+            <Fragment>
+              <h4 style={{ color: '#388e3c' }}>{recebidas} <FcPhone size={30} /></h4>
 
-      <Col>
-        {calls.Devolvidas ? (
-          <h4 style={{ color: '#42a5f5  ' }}>{calls.Devolvidas}</h4>
-        ) : (
-          <div>
-            <Spinner style={{ color: '#42a5f5  ' }}>
-              <span className='visually-hidden'>A carregar...</span>
-            </Spinner>
-          </div>
-        )}
-        <label style={{ fontSize: 18 }}>Devolvidas <FcCallback size={30} /></label>
-      </Col>
+            </Fragment>
+          ) : (
+            <div>
+              <Spinner style={{ color: '#388e3c' }}>
+                <span className='visually-hidden'>A carregar...</span>
+              </Spinner>
+            </div>
+          )}
+          <label style={{ fontSize: 16 }}>Chamadas Recebidas </label>
+        </Col>
+      )}
 
-      <Col>
-        {calls.perdidas ? (
-          <h4 style={{ color: '#c62828' }}>{calls.perdidas}</h4>
-        ) : (
-          <div>
-            <Spinner>
-              <span className='visually-hidden'>A carregar...</span>
-            </Spinner>
-          </div>
-        )}
-        <label style={{ fontSize: 18 }}>Perdidas <FcMissedCall size={30} /></label>
-      </Col>
+      {show[1] && (
+        <Col>
+          {devolvidas ? (
+            <Fragment>
+              <h4 style={{ color: '#42a5f5' }}>{devolvidas} <FcCallback size={30} /></h4>
 
-      <Col>
-        {calls.efetuadas ? (
-          <h4>{calls.efetuadas}</h4>
-        ) : (
-          <div>
-            <Spinner>
-              <span className='visually-hidden'>A carregar...</span>
-            </Spinner>
-          </div>
-        )}
-        <label style={{ fontSize: 18 }}>Efetuadas <FcPhone size={30} /></label>
-      </Col>
+            </Fragment>
+          ) : (
+            <div>
+              <Spinner style={{ color: '#42a5f5' }}>
+                <span className='visually-hidden'>A carregar...</span>
+              </Spinner>
+            </div>
+          )}
+          <label style={{ fontSize: 16 }}>Contactos devolvidos </label>
+        </Col>
+      )}
+
+      {show[2] && (
+        <Col>
+          {nDevolvidas ? (
+            <Fragment>
+              <h4 style={{ color: '#42a5f5' }}>{nDevolvidas} <FcCallback size={30} /></h4>
+
+            </Fragment>
+          ) : (
+            <div>
+              <Spinner style={{ color: '#42a5f5' }}>
+                <span className='visually-hidden'>A carregar...</span>
+              </Spinner>
+            </div>
+          )}
+          <label style={{ fontSize: 16 }}>Contactos não devolvidos </label>
+        </Col>
+      )}
+
+      {show[3] && (
+        <Col>
+          {perdidas ? (
+            <Fragment>
+              <h4 style={{ color: '#c62828' }}>{perdidas} <FcMissedCall size={30} /></h4>
+
+            </Fragment>
+          ) : (
+            <div>
+              <Spinner style={{ color: '#c62828' }}>
+                <span className='visually-hidden'>A carregar...</span>
+              </Spinner>
+            </div>
+          )}
+          <label style={{ fontSize: 16 }}>Chamadas perdidas </label>
+        </Col>
+      )}
+
+      {show[4] && (
+        <Col>
+          {efetuadas ? (
+            <Fragment>
+              <h4 style={{ color: '#388e3c' }}>{efetuadas} <FcPhone size={30} /></h4>
+
+            </Fragment>
+          ) : (
+            <div>
+              <Spinner style={{ color: '#388e3c' }}>
+                <span className='visually-hidden'>A carregar...</span>
+              </Spinner>
+            </div>
+          )}
+          <label style={{ fontSize: 16 }}>Chamadas efetuadas </label>
+        </Col>
+      )}
     </Row>
   )
 }

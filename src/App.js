@@ -7,12 +7,17 @@ const API_URL = 'https://amatoscar.pt/gap/apis/nos/callshistory.php';
 
 function App() {
   const [calls, setCalls] = useState({});
+  const [lastUpdated, setLastUpdated] = useState('');
 
   const getCallData = () => {
     axios
       .get(API_URL)
       .then((response) => {
         setCalls(response.data);
+        const currentDate = new Date().toLocaleString('en-GB', {
+          timeZone: 'Europe/Lisbon',
+        });
+        setLastUpdated(currentDate);
         console.log('Call data fetched:', response.data);
       })
       .catch((error) => {
@@ -24,14 +29,14 @@ function App() {
     // Fetch data initially
     getCallData();
 
-    // Set up polling interval to fetch data every 10 seconds (adjust as needed)
-    const interval = setInterval(getCallData, 10000);
+    // Set up polling interval to fetch data every 30 sec (adjust as needed)
+    const interval = setInterval(getCallData, 30000);
 
     // Clean up interval on component unmount
     return () => clearInterval(interval);
   }, []);
 
-  return <MainContainer calls={calls} />;
+  return <MainContainer calls={calls} lastUpdated={lastUpdated} />;
 }
 
 export default App;

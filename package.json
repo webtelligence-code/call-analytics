@@ -15,8 +15,10 @@
     "react-google-charts": "^4.0.0",
     "react-icons": "^4.8.0",
     "react-minimal-pie-chart": "^8.4.0",
+    "react-responsive": "^9.0.2",
     "react-scripts": "5.0.1",
     "recharts": "^2.6.2",
+    "victory": "^36.6.10",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
