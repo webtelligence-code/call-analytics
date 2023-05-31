@@ -16,7 +16,7 @@ const MainContainer = ({ calls, lastUpdated }) => {
         </Col>
         <Col xs={12} md={9}>
           <TopContainer calls={calls} />
-          <TopContainer calls={calls} />
+          <BottomContainer calls={calls} />
         </Col>
         <Col>
           <SideContainer />

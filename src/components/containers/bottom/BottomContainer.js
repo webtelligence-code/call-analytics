@@ -45,6 +45,15 @@ const BottomContainer = ({ calls }) => {
         </Card.Header>
       </Badge.Ribbon>
       <Card.Body>
+        <Charts
+          show={[false, false, true, true, false]}
+          recebidas={calls.recebidasInternas}
+          devolvidas={calls.DevolvidasInternas}
+          nDevolvidas={calls.NDevolvidasInternas}
+          perdidas={calls.perdidasInternas}
+          efetuadas={calls.efetuadasInternas}
+          total={calls.totalInternas}
+        />
       </Card.Body>
     </Card>
   )

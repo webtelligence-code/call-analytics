@@ -55,7 +55,15 @@ const TopContainer = ({ calls }) => {
           efetuadas={calls.efetuadas}
           show={[true, false, false, true, true]}
         />
-        <Charts calls={calls} show={[false, false, true, true, false]} />
+        <Charts
+          show={[false, false, true, true, false]}
+          recebidas={calls.recebidas}
+          devolvidas={calls.Devolvidas}
+          nDevolvidas={calls.NDevolvidas}
+          perdidas={calls.perdidas}
+          efetuadas={calls.efetuadas}
+          total={calls.totalExternos}
+        />
       </Card.Body>
     </Card >
   )

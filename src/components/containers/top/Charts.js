@@ -5,13 +5,13 @@ import { VictoryPie } from 'victory';
 
 
 
-const Charts = ({ calls, show }) => {
+const Charts = ({ show, recebidas, devolvidas, nDevolvidas, perdidas, efetuadas, total }) => {
 
   // Chamadas Recebidas
   const chamadasRecebidas = () => {
-    const totalCalls = calls.recebidas + (calls.total - calls.recebidas);
-    const recebidasPercentage = (calls.recebidas / totalCalls) * 100;
-    const totalPercentage = ((calls.total - calls.recebidas) / totalCalls) * 100;
+    const totalCalls = recebidas + (total - recebidas);
+    const recebidasPercentage = (recebidas / totalCalls) * 100;
+    const totalPercentage = ((total - recebidas) / totalCalls) * 100;
 
     const data = [
       { x: 'Recebidas', y: recebidasPercentage },
@@ -23,13 +23,13 @@ const Charts = ({ calls, show }) => {
 
   // Chamadas Devolvidas
   const chamadasDevolvidas = () => {
-    const totalCalls = calls.Devolvidas + (calls.perdidas - calls.Devolvidas);
-    const devolvidasPercentage = (calls.Devolvidas / totalCalls) * 100;
-    const totalPercentage = ((calls.perdidas - calls.Devolvidas) / totalCalls) * 100;
+    const totalCalls = devolvidas + (perdidas - devolvidas);
+    const devolvidasPercentage = (devolvidas / totalCalls) * 100;
+    const totalPercentage = ((perdidas - devolvidas) / totalCalls) * 100;
 
     const data = [
       { x: 'Recebidas', y: devolvidasPercentage },
-      { x: 'Total', y: totalPercentage },
+      { x: 'Total Devolvidas', y: totalPercentage },
     ];
 
     return data
@@ -37,13 +37,13 @@ const Charts = ({ calls, show }) => {
 
   // Chamadas Não Devolvidas
   const chamadasNDevolvidas = () => {
-    const totalCalls = calls.NDevolvidas + (calls.perdidas - calls.NDevolvidas);
-    const nDevolvidasPercentage = (calls.NDevolvidas / totalCalls) * 100;
-    const totalPercentage = ((calls.perdidas - calls.NDevolvidas) / totalCalls) * 100;
+    const totalCalls = nDevolvidas + (perdidas - nDevolvidas);
+    const nDevolvidasPercentage = (nDevolvidas / totalCalls) * 100;
+    const totalPercentage = ((perdidas - nDevolvidas) / totalCalls) * 100;
 
     const data = [
       { x: 'Recebidas', y: nDevolvidasPercentage },
-      { x: 'Total', y: totalPercentage },
+      { x: 'Total Não Devolvidas', y: totalPercentage },
     ];
 
     return data
@@ -51,9 +51,9 @@ const Charts = ({ calls, show }) => {
 
   // Chamadas Perdidas
   const chamadasPerdidas = () => {
-    const totalCalls = calls.perdidas + (calls.total - calls.perdidas);
-    const perdidasPercentage = (calls.perdidas / totalCalls) * 100;
-    const totalPercentage = ((calls.total - calls.perdidas) / totalCalls) * 100;
+    const totalCalls = perdidas + (total - perdidas);
+    const perdidasPercentage = (perdidas / totalCalls) * 100;
+    const totalPercentage = ((total - perdidas) / totalCalls) * 100;
 
     const data = [
       { x: 'Recebidas', y: perdidasPercentage },
@@ -65,9 +65,9 @@ const Charts = ({ calls, show }) => {
 
   // Chamadas Efetuadas
   const chamadasEfetuadas = () => {
-    const totalCalls = calls.efetuadas + (calls.total - calls.efetuadas);
-    const efetuadasPercentage = (calls.efetuadas / totalCalls) * 100;
-    const totalPercentage = ((calls.total - calls.efetuadas) / totalCalls) * 100;
+    const totalCalls = efetuadas + (total - efetuadas);
+    const efetuadasPercentage = (efetuadas / totalCalls) * 100;
+    const totalPercentage = ((total - efetuadas) / totalCalls) * 100;
 
     const data = [
       { x: 'Recebidas', y: efetuadasPercentage },
@@ -78,10 +78,9 @@ const Charts = ({ calls, show }) => {
   }
 
   return (
-    calls ? (
       <Row className='justify-content-around'>
         {show[0] && (
-          <Col >
+          <Col md={3}>
             <VictoryPie
               origin={{ y: 250 }}
               data={chamadasRecebidas()}
@@ -95,7 +94,7 @@ const Charts = ({ calls, show }) => {
         )}
 
         {show[1] && (
-          <Col>
+          <Col md={3}>
             <VictoryPie
               origin={{ y: 250 }}
               data={chamadasDevolvidas()}
@@ -109,7 +108,7 @@ const Charts = ({ calls, show }) => {
         )}
 
         {show[2] && (
-          <Col xs={2}>
+          <Col md={3}>
             <VictoryPie
               origin={{ y: 250 }}
               data={chamadasNDevolvidas()}
@@ -123,7 +122,7 @@ const Charts = ({ calls, show }) => {
         )}
 
         {show[3] && (
-          <Col xs={2}>
+          <Col md={3}>
             <VictoryPie
               origin={{ y: 250 }}
               data={chamadasPerdidas()}
@@ -137,7 +136,7 @@ const Charts = ({ calls, show }) => {
         )}
 
         {show[4] && (
-          <Col>
+          <Col md={3}>
             <VictoryPie
               origin={{ y: 250 }}
               data={chamadasEfetuadas()}
@@ -150,9 +149,6 @@ const Charts = ({ calls, show }) => {
           </Col>
         )}
       </Row>
-    ) : (
-      <Empty description={'Dados indisponíveis'} />
-    )
   )
 }
 
