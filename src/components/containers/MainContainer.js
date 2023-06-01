@@ -6,8 +6,6 @@ import BottomContainer from './BottomContainer';
 import SideContainer from './SideContainer';
 
 const MainContainer = ({ calls, lastUpdated }) => {
-  if (lastUpdated) console.log('Last updated:', lastUpdated);
-
   return (
     <Container fluid className='p-3'>
       <Row>
