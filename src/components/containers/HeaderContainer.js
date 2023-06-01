@@ -2,7 +2,7 @@ import React from 'react'
 import { Card } from 'react-bootstrap'
 
 import { CgMediaLive } from 'react-icons/cg';
-import '../../../styles/live.css'
+import '../../styles/live.css'
 
 const HeaderContainer = ({ lastUpdated }) => {
   return (

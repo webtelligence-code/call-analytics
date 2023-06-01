@@ -1,9 +1,9 @@
 import React from 'react'
 import { Col, Container, Row } from 'react-bootstrap'
-import TopContainer from './top/TopContainer'
-import BottomContainer from './bottom/BottomContainer'
-import SideContainer from './side/SideContainer'
-import HeaderContainer from './header/HeaderContainer'
+import HeaderContainer from './HeaderContainer';
+import TopContainer from './TopContainer';
+import BottomContainer from './BottomContainer';
+import SideContainer from './SideContainer';
 
 const MainContainer = ({ calls, lastUpdated }) => {
   if (lastUpdated) console.log('Last updated:', lastUpdated);
@@ -11,9 +11,11 @@ const MainContainer = ({ calls, lastUpdated }) => {
   return (
     <Container fluid className='p-3'>
       <Row>
-        <Col xs={12}>
-          <HeaderContainer lastUpdated={lastUpdated} />
-        </Col>
+        {lastUpdated && (
+          <Col xs={12}>
+            <HeaderContainer lastUpdated={lastUpdated} />
+          </Col>
+        )}
         <Col xs={12} md={9}>
           <TopContainer calls={calls} />
           <BottomContainer calls={calls} />

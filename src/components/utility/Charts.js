@@ -18,7 +18,7 @@ const Charts = ({ show, recebidas, devolvidas, nDevolvidas, perdidas, efetuadas,
       { x: 'Total', y: totalPercentage },
     ];
 
-    return data
+    return data;
   }
 
   // Chamadas Devolvidas
@@ -32,7 +32,7 @@ const Charts = ({ show, recebidas, devolvidas, nDevolvidas, perdidas, efetuadas,
       { x: 'Total Devolvidas', y: totalPercentage },
     ];
 
-    return data
+    return data;
   }
 
   // Chamadas Não Devolvidas
@@ -46,7 +46,7 @@ const Charts = ({ show, recebidas, devolvidas, nDevolvidas, perdidas, efetuadas,
       { x: 'Total Não Devolvidas', y: totalPercentage },
     ];
 
-    return data
+    return data;
   }
 
   // Chamadas Perdidas
@@ -60,7 +60,7 @@ const Charts = ({ show, recebidas, devolvidas, nDevolvidas, perdidas, efetuadas,
       { x: 'Total', y: totalPercentage },
     ];
 
-    return data
+    return data;
   }
 
   // Chamadas Efetuadas
@@ -74,7 +74,7 @@ const Charts = ({ show, recebidas, devolvidas, nDevolvidas, perdidas, efetuadas,
       { x: 'Total', y: totalPercentage },
     ];
 
-    return data
+    return data;
   }
 
   return (

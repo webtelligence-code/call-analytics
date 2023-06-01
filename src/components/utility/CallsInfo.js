@@ -7,7 +7,7 @@ const CallsInfo = ({ recebidas, devolvidas, nDevolvidas, perdidas, efetuadas, sh
     <Row className='text-center'>
       {show[0] && (
         <Col>
-          {recebidas ? (
+          {recebidas >= 0 ? (
             <Fragment>
               <h4 style={{ color: '#388e3c' }}>{recebidas} <FcPhone size={30} /></h4>
 
@@ -25,7 +25,7 @@ const CallsInfo = ({ recebidas, devolvidas, nDevolvidas, perdidas, efetuadas, sh
 
       {show[1] && (
         <Col>
-          {devolvidas ? (
+          {devolvidas >= 0 ? (
             <Fragment>
               <h4 style={{ color: '#42a5f5' }}>{devolvidas} <FcCallback size={30} /></h4>
 
@@ -43,7 +43,7 @@ const CallsInfo = ({ recebidas, devolvidas, nDevolvidas, perdidas, efetuadas, sh
 
       {show[2] && (
         <Col>
-          {nDevolvidas ? (
+          {nDevolvidas >= 0 ? (
             <Fragment>
               <h4 style={{ color: '#42a5f5' }}>{nDevolvidas} <FcCallback size={30} /></h4>
 
@@ -61,7 +61,7 @@ const CallsInfo = ({ recebidas, devolvidas, nDevolvidas, perdidas, efetuadas, sh
 
       {show[3] && (
         <Col>
-          {perdidas ? (
+          {perdidas >= 0 ? (
             <Fragment>
               <h4 style={{ color: '#c62828' }}>{perdidas} <FcMissedCall size={30} /></h4>
 
@@ -79,7 +79,7 @@ const CallsInfo = ({ recebidas, devolvidas, nDevolvidas, perdidas, efetuadas, sh
 
       {show[4] && (
         <Col>
-          {efetuadas ? (
+          {efetuadas >= 0 ? (
             <Fragment>
               <h4 style={{ color: '#388e3c' }}>{efetuadas} <FcPhone size={30} /></h4>
 
