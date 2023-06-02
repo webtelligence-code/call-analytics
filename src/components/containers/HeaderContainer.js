@@ -7,20 +7,19 @@ import '../../styles/marquee.css'
 
 const HeaderContainer = ({ lastUpdated }) => {
   return (
-    <Card 
-    className='mb-3'
-    style={{
-      borderLeftWidth: 0,
-      borderRightWidth: 0,
-      borderBottomWidth: 0
-    }}
+    <Card
+      className='mb-3 shadow'
+      style={{
+        borderBottomWidth: 0,
+      }}
     >
       <Card.Header
         as={'h5'}
         style={{
           backgroundColor: 'white',
           borderRadius: '5px',
-          borderLeftWidth: 0
+          overflow: 'hidden', // Add this line
+          whiteSpace: 'nowrap', // Add this line
         }}
       >
         <div className='marquee'>

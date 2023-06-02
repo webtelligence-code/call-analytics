@@ -80,7 +80,7 @@ const Charts = ({ show, recebidas, devolvidas, nDevolvidas, perdidas, efetuadas,
   return (
       <Row className='justify-content-around'>
         {show[0] && (
-          <Col md={3}>
+          <Col md={2}>
             <VictoryPie
               origin={{ y: 250 }}
               data={chamadasRecebidas()}
@@ -94,7 +94,7 @@ const Charts = ({ show, recebidas, devolvidas, nDevolvidas, perdidas, efetuadas,
         )}
 
         {show[1] && (
-          <Col md={3}>
+          <Col md={2}>
             <VictoryPie
               origin={{ y: 250 }}
               data={chamadasDevolvidas()}
@@ -108,7 +108,7 @@ const Charts = ({ show, recebidas, devolvidas, nDevolvidas, perdidas, efetuadas,
         )}
 
         {show[2] && (
-          <Col md={3}>
+          <Col md={2}>
             <VictoryPie
               origin={{ y: 250 }}
               data={chamadasNDevolvidas()}
@@ -122,7 +122,7 @@ const Charts = ({ show, recebidas, devolvidas, nDevolvidas, perdidas, efetuadas,
         )}
 
         {show[3] && (
-          <Col md={3}>
+          <Col md={2}>
             <VictoryPie
               origin={{ y: 250 }}
               data={chamadasPerdidas()}
@@ -136,7 +136,7 @@ const Charts = ({ show, recebidas, devolvidas, nDevolvidas, perdidas, efetuadas,
         )}
 
         {show[4] && (
-          <Col md={3}>
+          <Col md={2}>
             <VictoryPie
               origin={{ y: 250 }}
               data={chamadasEfetuadas()}

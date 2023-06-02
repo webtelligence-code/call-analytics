@@ -22,7 +22,8 @@ const BottomContainer = ({ calls }) => {
                 justifyContent: 'center',
               }}
             >
-              <IoIosCall className='me-2' size={20} />
+              Total:
+              <IoIosCall className='mx-2' size={20} />
               {calls.totalInternas}
             </label>
           ) : (

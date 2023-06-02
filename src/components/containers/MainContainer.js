@@ -19,7 +19,7 @@ const MainContainer = ({ calls, lastUpdated }) => {
           <BottomContainer calls={calls} />
         </Col>
         <Col>
-          <SideContainer />
+          <SideContainer extensoes={calls.Extensoes} />
         </Col>
       </Row>
     </Container>
