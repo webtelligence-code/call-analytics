@@ -1,17 +1,34 @@
-.marquee {
+.marquee-h {
   overflow: hidden;
   white-space: nowrap;
-  animation: marquee 15s linear infinite;
+  animation: marquee-h 15s linear infinite;
   width: 100%; /* Add this property */
   padding: 0 15px; /* Add this property */
   box-sizing: border-box; /* Add this property */
 }
 
-@keyframes marquee {
+@keyframes marquee-h {
   0% {
     transform: translateX(100%);
   }
   100% {
     transform: translateX(-100%);
+  }
+}
+
+.marquee-v {
+  overflow: hidden;
+  white-space: nowrap;
+  animation: marquee-v 8s linear infinite;
+  padding: 5px; /* Add this property */
+  box-sizing: border-box; /* Add this property */
+}
+
+@keyframes marquee-v {
+  0% {
+    transform: translateY(100%);
+  }
+  100% {
+    transform: translateY(-100%);
   }
 }

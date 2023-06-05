@@ -22,7 +22,7 @@ const HeaderContainer = ({ lastUpdated }) => {
           whiteSpace: 'nowrap', // Add this line
         }}
       >
-        <div className='marquee'>
+        <div className='marquee-h'>
           <label>
             Última atualização: {lastUpdated} <CgMediaLive className='ms-2 icon' color='#c62828' />
           </label>
