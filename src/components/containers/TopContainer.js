@@ -15,7 +15,7 @@ const TopContainer = ({ calls }) => {
         placement='end'
         text={
           calls.totalExternos ? (
-            <label
+            <h6
               style={{
                 display: 'flex',
                 alignItems: 'center',
@@ -25,7 +25,7 @@ const TopContainer = ({ calls }) => {
               Total:
               <IoIosCall className='mx-2' size={20} />
               {calls.totalExternos}
-            </label>
+            </h6>
           ) : (
             <Spinner style={{ color: 'white' }} size='sm'>
               <span className='visually-hidden'>A carregar...</span>
@@ -33,6 +33,7 @@ const TopContainer = ({ calls }) => {
           )
         }
         color='#ed6337'
+        style={{height: 'auto'}}
       >
         <Card.Header
           className='text-center shadow-sm'

@@ -19,9 +19,8 @@
 .marquee-v {
   overflow: hidden;
   white-space: nowrap;
-  animation: marquee-v 8s linear infinite;
+  animation: marquee-v 15s linear infinite;
   padding: 5px; /* Add this property */
-  box-sizing: border-box; /* Add this property */
 }
 
 @keyframes marquee-v {
