@@ -9,23 +9,24 @@ const TopContainer = ({ calls }) => {
   return (
     <Card
       className='mb-3 shadow'
-      style={{ width: '100%' }}
+      style={{ width: '100%', height: 'auto' }}
     >
       <Badge.Ribbon
         placement='end'
         text={
           calls.totalExternos ? (
-            <h6
+            <label
               style={{
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
+                fontWeight: 'bold'
               }}
             >
               Total:
               <IoIosCall className='mx-2' size={20} />
               {calls.totalExternos}
-            </h6>
+            </label>
           ) : (
             <Spinner style={{ color: 'white' }} size='sm'>
               <span className='visually-hidden'>A carregar...</span>
@@ -59,13 +60,14 @@ const TopContainer = ({ calls }) => {
         />
         {calls.totalExternos && (
           <Charts
-            show={[false, false, true, true, false]}
+            show={[false, true, true, false, false]}
             recebidas={calls.recebidas}
             devolvidas={calls.Devolvidas}
             nDevolvidas={calls.NDevolvidas}
             perdidas={calls.perdidas}
             efetuadas={calls.efetuadas}
             total={calls.totalExternos}
+            personTypeLabel={'Clientes'}
           />
         )}
       </Card.Body>

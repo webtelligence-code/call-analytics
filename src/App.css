@@ -2,3 +2,27 @@
   background-color: whitesmoke;
   padding: 20px;
 }
+
+.chart-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  background-color: gray;
+}
+
+.lost-calls-container {
+  background-color: #c62828;
+  border-radius: 15px;
+  color: 'white';
+  padding-block: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.call-missed-container {
+  background-color: #c62828;
+  border-radius: 15px;
+  padding: 5px
+}
+

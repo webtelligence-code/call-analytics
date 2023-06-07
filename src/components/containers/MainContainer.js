@@ -14,11 +14,11 @@ const MainContainer = ({ calls, lastUpdated }) => {
             <HeaderContainer lastUpdated={lastUpdated} />
           </Col>
         )}
-        <Col lg={12} xl={9}>
+        <Col lg={12} xl={8} className='align-items-between'>
           <TopContainer calls={calls} />
           <BottomContainer calls={calls} />
         </Col>
-        <Col lg={12} xl={3}>
+        <Col lg={12} xl={4}>
           <SideContainer extensoes={calls.Extensoes} />
         </Col>
       </Row>

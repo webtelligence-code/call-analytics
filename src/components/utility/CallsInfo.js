@@ -62,13 +62,12 @@ const CallsInfo = ({ recebidas, devolvidas, nDevolvidas, perdidas, efetuadas, sh
       {show[3] && (
         <Col>
           {perdidas >= 0 ? (
-            <Fragment>
-              <h4 style={{ color: '#c62828' }}>{perdidas} <FcMissedCall size={30} /></h4>
-
-            </Fragment>
+            <div className='lost-calls-container'>
+              <h4 style={{ color: 'white', fontWeight: 'bold' }}>{perdidas} <FcMissedCall size={30} /></h4>
+            </div>
           ) : (
             <div>
-              <Spinner style={{ color: '#c62828' }}>
+              <Spinner style={{ color: '#c62828'}}>
                 <span className='visually-hidden'>A carregar...</span>
               </Spinner>
             </div>

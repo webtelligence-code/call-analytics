@@ -10,7 +10,7 @@ const BottomContainer = ({ calls }) => {
   const isSmallScreen = useMediaQuery({ maxWidth: 768 }); // Defauld bootstrap value
 
   return (
-    <Card className={`shadow text-center ${isSmallScreen ? 'mb-3' : ''}`} style={{ width: '100%' }}>
+    <Card className={`shadow text-center ${isSmallScreen ? 'mb-3' : ''}`} style={{ width: '100%', height: 'auto' }}>
       <Badge.Ribbon
         placement='end'
         text={
@@ -20,6 +20,7 @@ const BottomContainer = ({ calls }) => {
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
+                fontWeight: 'bold'
               }}
             >
               Total:
@@ -57,13 +58,14 @@ const BottomContainer = ({ calls }) => {
         />
         {calls.totalInternas && (
           <Charts
-          show={[false, false, true, true, false]}
+          show={[false, true, true, false, false]}
           recebidas={calls.recebidasInternas}
           devolvidas={calls.DevolvidasInternas}
           nDevolvidas={calls.NDevolvidasInternas}
           perdidas={calls.perdidasInternas}
           efetuadas={calls.efetuadasInternas}
           total={calls.totalInternas}
+          personTypeLabel={'Colaboradores'}
         />
         )}
       </Card.Body>

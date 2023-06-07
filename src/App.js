@@ -30,7 +30,7 @@ function App() {
     getCallData();
 
     // Set up polling interval to fetch data every 30 sec (adjust as needed)
-    const interval = setInterval(getCallData, 30000);
+    const interval = setInterval(getCallData, 90000);
 
     // Clean up interval on component unmount
     return () => clearInterval(interval);

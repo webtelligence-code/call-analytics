@@ -2,14 +2,17 @@ import React from 'react';
 import { Card } from 'react-bootstrap';
 import { Avatar, Badge, List } from 'antd';
 import { FaSadTear, FaMeh, FaSmile } from 'react-icons/fa';
+import { FcCallback, FcMissedCall, FcPhone } from 'react-icons/fc'
+import { BsFillTelephoneForwardFill } from 'react-icons/bs'
+import ListItemDescription from '../utility/ListItemDescription';
 
 const SideContainer = ({ extensoes }) => {
   const extensoesArray = extensoes && Object.entries(extensoes).map(([key, value]) => ({ key, ...value }));
 
   // Find the item with the worst calls (fewest returned)
   const worstItem = extensoesArray && extensoesArray.reduce((prev, current) => {
-    const prevReturned = prev ? prev.recebidas : 0;
-    const currentReturned = current.recebidas;
+    const prevReturned = prev ? prev.Devolvidas : 0;
+    const currentReturned = current.Devolvidas;
     const prevLost = prev ? prev.perdidas : 0;
     const currentLost = current.perdidas;
 
@@ -23,53 +26,50 @@ const SideContainer = ({ extensoes }) => {
   }, null)
 
   const getIcon = (item) => {
-    const returned = item.recebidas;
+    const returned = item.Devolvidas;
     const lost = item.perdidas;
     const netCalls = returned - lost;
 
     if (netCalls < 0) {
       // Worst: More lost calls than returned calls
-      return <FaSadTear className='ms-2'  />;
+      return <FaSadTear className='ms-2' />;
     } else if (netCalls === 0) {
       // Neutral: Equal number of lost and returned calls
-      return <FaMeh className='ms-2'  />;
+      return <FaMeh className='ms-2' />;
     } else {
       // Best: More returned calls than lost calls
-      return <FaSmile className='ms-2'  />;
+      return <FaSmile className='ms-2' />;
     }
   };
 
   const getColor = (item) => {
-    const returned = item.recebidas;
+    const returned = item.Devolvidas;
     const lost = item.perdidas;
     const netCalls = returned - lost;
 
-    if (netCalls < 0) {
-      // Worst: More lost calls than returned calls
+    const returnRate = (returned / lost) * 100;
+    if (returnRate < 50) {
       return '#c62828';
-    } else if (netCalls === 0) {
-      // Neutral: Equal number of lost and returned calls
+    } else if (returnRate === 50) {
       return 'orange';
     } else {
-      // Best: More returned calls than lost calls
-      return '#388e3c';
+      return '#388e3c'
     }
   };
 
   const getLabel = (item) => {
-    const returned = item.recebidas;
+    const returned = item.Devolvidas;
     const lost = item.perdidas;
     const netCalls = returned - lost;
 
-    if (netCalls < 0) {
-      // Worst: More lost calls than returned calls
+    const returnRate = (returned / lost) * 100;
+    console.log(returnRate)
+    if (returnRate < 50) {
       return 'Pior';
-    } else if (netCalls === 0) {
-      // Neutral: Equal number of lost and returned calls
+    } else if (returnRate === 50) {
       return 'Neutro';
     } else {
-      // Best: More returned calls than lost calls
-      return 'Melhor';
+      return 'Melhor'
     }
   };
 
@@ -85,34 +85,31 @@ const SideContainer = ({ extensoes }) => {
         }}
         as="h5"
       >
-        Extensões
+        Piores Concessões (teste)
       </Card.Header>
-      <Card.Body style={{ height: 'calc(100% - 40px)', overflow: 'hidden' }}>
-        <div className="marquee-v">
-          <List
-            itemLayout="horizontal"
-            dataSource={extensoesArray}
-            renderItem={(item, index) => (
-              <List.Item>
-                <List.Item.Meta
-                  avatar={
-                    <Badge count={item.total}>
-                      <Avatar className='icon' style={{ backgroundColor: getColor(item) }}>{item.key}</Avatar>
-                    </Badge>
-                  }
-                  title={
-                    <div>
-                      <label>{item.Nome}</label>
-                      <Badge className='ms-2 icon' count={getLabel(item)} color={getColor(item)} />
-                    </div>
-                  }
-                  description={`Perdidas: ${item.perdidas}, Recebidas: ${item.recebidas}, Efetuadas: ${item.efetuadas}`}
-                  className={item === worstItem ? "worst-item" : ""}
-                />
-              </List.Item>
-            )}
-          />
-        </div>
+      <Card.Body style={{ overflow: 'hidden' }}>
+        <List
+          itemLayout="horizontal"
+          dataSource={extensoesArray}
+          renderItem={(item, index) => (
+            <List.Item>
+              <List.Item.Meta
+                avatar={<Avatar style={{ backgroundColor: '#a3a2a2' }}>{item.key}</Avatar>}
+                title={item.Nome}
+                description={
+                  <ListItemDescription
+                    total={item.total}
+                    recebidas={item.recebidas}
+                    perdidas={item.perdidas}
+                    devolvidas={item.Devolvidas}
+                    nDevolvidas={item.NDevolvidas}
+                    efetuadas={item.efetuadas} />
+                }
+                className={item === worstItem ? "worst-item" : ""}
+              />
+            </List.Item>
+          )}
+        />
       </Card.Body>
     </Card>
   );

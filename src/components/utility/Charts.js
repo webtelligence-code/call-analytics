@@ -1,11 +1,11 @@
 import { Empty } from 'antd';
 import React, { Fragment } from 'react'
 import { Col, Row } from 'react-bootstrap'
-import { VictoryPie } from 'victory';
+import { VictoryLabel, VictoryLegend, VictoryPie } from 'victory';
 
 
 
-const Charts = ({ show, recebidas, devolvidas, nDevolvidas, perdidas, efetuadas, total }) => {
+const Charts = ({ show, recebidas, devolvidas, nDevolvidas, perdidas, efetuadas, total, personTypeLabel }) => {
 
   // Chamadas Recebidas
   const chamadasRecebidas = () => {
@@ -23,12 +23,12 @@ const Charts = ({ show, recebidas, devolvidas, nDevolvidas, perdidas, efetuadas,
 
   // Chamadas Devolvidas
   const chamadasDevolvidas = () => {
-    const totalCalls = devolvidas + (perdidas - devolvidas);
+    const totalCalls = devolvidas + nDevolvidas;
     const devolvidasPercentage = (devolvidas / totalCalls) * 100;
-    const totalPercentage = ((perdidas - devolvidas) / totalCalls) * 100;
+    const totalPercentage = 100 - devolvidasPercentage;
 
     const data = [
-      { x: 'Recebidas', y: devolvidasPercentage },
+      { x: 'Recebidas', y: devolvidasPercentage, z: devolvidas },
       { x: 'Total Devolvidas', y: totalPercentage },
     ];
 
@@ -37,12 +37,12 @@ const Charts = ({ show, recebidas, devolvidas, nDevolvidas, perdidas, efetuadas,
 
   // Chamadas Não Devolvidas
   const chamadasNDevolvidas = () => {
-    const totalCalls = nDevolvidas + (perdidas - nDevolvidas);
+    const totalCalls = nDevolvidas + devolvidas;
     const nDevolvidasPercentage = (nDevolvidas / totalCalls) * 100;
-    const totalPercentage = ((perdidas - nDevolvidas) / totalCalls) * 100;
+    const totalPercentage = 100 - nDevolvidasPercentage;
 
     const data = [
-      { x: 'Recebidas', y: nDevolvidasPercentage },
+      { x: 'Recebidas', y: nDevolvidasPercentage, z: nDevolvidas },
       { x: 'Total Não Devolvidas', y: totalPercentage },
     ];
 
@@ -57,7 +57,7 @@ const Charts = ({ show, recebidas, devolvidas, nDevolvidas, perdidas, efetuadas,
 
     const data = [
       { x: 'Recebidas', y: perdidasPercentage },
-      { x: 'Total', y: totalPercentage },
+      { x: 'Total perdidas', y: totalPercentage },
     ];
 
     return data;
@@ -78,77 +78,94 @@ const Charts = ({ show, recebidas, devolvidas, nDevolvidas, perdidas, efetuadas,
   }
 
   return (
-      <Row className='justify-content-around'>
-        {show[0] && (
-          <Col md={2}>
-            <VictoryPie
-              origin={{ y: 250 }}
-              data={chamadasRecebidas()}
-              innerRadius={80}
-              colorScale={['#388e3c', '#e6e6e6']}
-              startAngle={-90}
-              endAngle={90}
-              labelComponent={<Fragment />} // If Frafgment provided then labels will not be rendered
-            />
-          </Col>
-        )}
+    <Row className='justify-content-around'>
+      {show[0] && (
+        <Col md={2}>
+          <VictoryPie
+            origin={{ y: 250 }}
+            data={chamadasRecebidas()}
+            innerRadius={80}
+            colorScale={['#388e3c', '#e6e6e6']}
+            startAngle={-90}
+            endAngle={90}
+            labelComponent={<Fragment />} // If Frafgment provided then labels will not be rendered
+          />
+        </Col>
+      )}
 
-        {show[1] && (
-          <Col md={2}>
+      {show[1] && (
+        <Col md={3} className='text-center mb-3'>
+          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
             <VictoryPie
-              origin={{ y: 250 }}
+              height={200}
+              width={400}
+              origin={{ x: 200, y: 150 }}
               data={chamadasDevolvidas()}
-              innerRadius={80}
+              innerRadius={110}
               colorScale={['#42a5f5', '#e6e6e6']}
               startAngle={-90}
               endAngle={90}
-              labelComponent={<Fragment />} // If Frafgment provided then labels will not be rendered
+              labelComponent={<Fragment />}
+              style={{ labels: { fontSize: 35, fill: 'white' } }}
             />
-          </Col>
-        )}
+            <h5 style={{ display: 'block', color: '#42a5f5', marginTop: -40 }}>{devolvidas}</h5>
+            <label className='text-center'>{personTypeLabel} devolvidos</label>
+          </div>
 
-        {show[2] && (
-          <Col md={2}>
+        </Col>
+      )}
+
+      {show[2] && (
+        <Col md={3} className='text-center mb-3'>
+          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
             <VictoryPie
-              origin={{ y: 250 }}
+              height={200}
+              width={400}
+              origin={{ x: 200, y: 150 }}
               data={chamadasNDevolvidas()}
-              innerRadius={80}
-              colorScale={['#42a5f5', '#e6e6e6']}
-              startAngle={-90}
-              endAngle={90}
-              labelComponent={<Fragment />} // If Frafgment provided then labels will not be rendered
-            />
-          </Col>
-        )}
-
-        {show[3] && (
-          <Col md={2}>
-            <VictoryPie
-              origin={{ y: 250 }}
-              data={chamadasPerdidas()}
-              innerRadius={80}
+              innerRadius={110}
               colorScale={['#c62828', '#e6e6e6']}
               startAngle={-90}
               endAngle={90}
-              labelComponent={<Fragment />} // If Frafgment provided then labels will not be rendered
+              labelComponent={<Fragment />}
+              style={{ labels: { fontSize: 35, fill: 'white' } }}
             />
-          </Col>
-        )}
+          </div>
+          <h5 style={{ display: 'block', color: '#c62828', marginTop: -40 }}>{nDevolvidas}</h5>
+          <label style={{ display: 'block', marginTop: '10px' }}>{personTypeLabel} não devolvidos</label>
+        </Col>
 
-        {show[4] && (
-          <Col md={2}>
-            <VictoryPie
-              origin={{ y: 250 }}
-              data={chamadasEfetuadas()}
-              innerRadius={80}
-              colorScale={['#388e3c', '#e6e6e6']}
-              startAngle={-90}
-              endAngle={90}
-              labelComponent={<Fragment />} // If Frafgment provided then labels will not be rendered
-            />
-          </Col>
-        )}
-      </Row>
+
+      )}
+
+      {show[3] && (
+        <Col md={2}>
+          <VictoryPie
+            origin={{ y: 250 }}
+            data={chamadasPerdidas()}
+            innerRadius={80}
+            colorScale={['#c62828', '#e6e6e6']}
+            startAngle={-90}
+            endAngle={90}
+            labelComponent={<Fragment />} // If Frafgment provided then labels will not be rendered
+          />
+        </Col>
+      )}
+
+      {show[4] && (
+        <Col md={2}>
+          <VictoryPie
+            origin={{ y: 250 }}
+            data={chamadasEfetuadas()}
+            innerRadius={80}
+            colorScale={['#388e3c', '#e6e6e6']}
+            startAngle={-90}
+            endAngle={90}
+            labelComponent={<Fragment />} // If Frafgment provided then labels will not be rendered
+          />
+        </Col>
+      )}
+    </Row>
   )
 }
 
