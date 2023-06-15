@@ -7,22 +7,26 @@ import SideContainer from './SideContainer';
 
 const MainContainer = ({ calls, lastUpdated }) => {
   return (
-    <Container fluid className='p-3'>
-      <Row>
-        {lastUpdated && (
-          <Col xs={12}>
-            <HeaderContainer lastUpdated={lastUpdated} />
+    <div className='app'>
+      <Container fluid className='p-3'>
+        <Row className='full-height-row' >
+          {lastUpdated && (
+            <Col xs={12} style={{ height: '100%' }}>
+              <HeaderContainer lastUpdated={lastUpdated} />
+            </Col>
+          )}
+          <Col lg={12} xl={8} className='d-flex flex-column' style={{ height: '100%' }}>
+            <TopContainer calls={calls} />
+            <BottomContainer calls={calls} />
           </Col>
-        )}
-        <Col lg={12} xl={8} className='align-items-between'>
-          <TopContainer calls={calls} />
-          <BottomContainer calls={calls} />
-        </Col>
-        <Col lg={12} xl={4}>
-          <SideContainer extensoes={calls.Extensoes} />
-        </Col>
-      </Row>
-    </Container>
+          <Col lg={12} xl={4}>
+            <div className='side-container-wrapper' style={{ height: '100%' }}>
+              <SideContainer percentagens={calls.Percentagens} />
+            </div>
+          </Col>
+        </Row>
+      </Container>
+    </div>
   )
 }
 

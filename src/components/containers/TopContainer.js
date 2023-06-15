@@ -9,7 +9,7 @@ const TopContainer = ({ calls }) => {
   return (
     <Card
       className='mb-3 shadow'
-      style={{ width: '100%', height: 'auto' }}
+      style={{ width: '100%'}}
     >
       <Badge.Ribbon
         placement='end'
@@ -34,7 +34,7 @@ const TopContainer = ({ calls }) => {
           )
         }
         color='#ed6337'
-        style={{height: 'auto'}}
+        style={{ height: 'auto' }}
       >
         <Card.Header
           className='text-center shadow-sm'
@@ -49,7 +49,7 @@ const TopContainer = ({ calls }) => {
         </Card.Header>
       </Badge.Ribbon>
 
-      <Card.Body>
+      <Card.Body style={{display: 'flex', flexDirection: 'column', justifyContent: 'center'}}>
         <CallsInfo
           recebidas={calls.recebidas}
           devolvidas={null}

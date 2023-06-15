@@ -10,7 +10,7 @@ const BottomContainer = ({ calls }) => {
   const isSmallScreen = useMediaQuery({ maxWidth: 768 }); // Defauld bootstrap value
 
   return (
-    <Card className={`shadow text-center ${isSmallScreen ? 'mb-3' : ''}`} style={{ width: '100%', height: 'auto' }}>
+    <Card className={`shadow text-center ${isSmallScreen ? 'mb-3' : ''}`} style={{ width: '100%' }}>
       <Badge.Ribbon
         placement='end'
         text={
@@ -47,7 +47,7 @@ const BottomContainer = ({ calls }) => {
           Chamadas Internas
         </Card.Header>
       </Badge.Ribbon>
-      <Card.Body>
+      <Card.Body style={{display: 'flex', flexDirection: 'column', justifyContent: 'center'}}>
         <CallsInfo
           recebidas={calls.recebidasInternas}
           devolvidas={null}

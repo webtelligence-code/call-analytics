@@ -1,7 +1,8 @@
-import { Empty } from 'antd';
 import React, { Fragment } from 'react'
 import { Col, Row } from 'react-bootstrap'
-import { VictoryLabel, VictoryLegend, VictoryPie } from 'victory';
+import { BsFillTelephoneForwardFill } from 'react-icons/bs';
+import { FcCallback } from 'react-icons/fc';
+import { VictoryPie } from 'victory';
 
 
 
@@ -77,6 +78,13 @@ const Charts = ({ show, recebidas, devolvidas, nDevolvidas, perdidas, efetuadas,
     return data;
   }
 
+  const getPercentageRate = (value) => {
+    const total = devolvidas + nDevolvidas;
+    const percentageRate = (value / total) * 100;
+
+    return parseInt(percentageRate.toFixed(0), 10); // Convert to integer without decimals
+  }
+
   return (
     <Row className='justify-content-around'>
       {show[0] && (
@@ -108,8 +116,10 @@ const Charts = ({ show, recebidas, devolvidas, nDevolvidas, perdidas, efetuadas,
               labelComponent={<Fragment />}
               style={{ labels: { fontSize: 35, fill: 'white' } }}
             />
-            <h5 style={{ display: 'block', color: '#42a5f5', marginTop: -40 }}>{devolvidas}</h5>
-            <label className='text-center'>{personTypeLabel} devolvidos</label>
+            <h5 style={{ display: 'block', color: '#42a5f5', marginTop: -25 }}>{getPercentageRate(devolvidas)}%</h5>
+            <label className='text-center' style={{marginTop: 0}}>
+              <FcCallback size={25} className='me-2' />
+              <label style={{ fontWeight: 'bold', color: '#42a5f5' }}>{devolvidas}</label> {personTypeLabel} devolvidos</label>
           </div>
 
         </Col>
@@ -117,7 +127,7 @@ const Charts = ({ show, recebidas, devolvidas, nDevolvidas, perdidas, efetuadas,
 
       {show[2] && (
         <Col md={3} className='text-center mb-3'>
-          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+          <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
             <VictoryPie
               height={200}
               width={400}
@@ -131,8 +141,11 @@ const Charts = ({ show, recebidas, devolvidas, nDevolvidas, perdidas, efetuadas,
               style={{ labels: { fontSize: 35, fill: 'white' } }}
             />
           </div>
-          <h5 style={{ display: 'block', color: '#c62828', marginTop: -40 }}>{nDevolvidas}</h5>
-          <label style={{ display: 'block', marginTop: '10px' }}>{personTypeLabel} não devolvidos</label>
+          <h5 style={{ display: 'block', color: '#c62828', marginTop: -25 }}>{getPercentageRate(nDevolvidas)}%</h5>
+          <label style={{ display: 'block', marginTop: 0 }}>
+            <BsFillTelephoneForwardFill size={20} className='me-2' color='#c62828' />
+            <label style={{ fontWeight: 'bold', color: '#c62828' }}>{nDevolvidas}</label> {personTypeLabel} não devolvidos
+          </label>
         </Col>
 
 

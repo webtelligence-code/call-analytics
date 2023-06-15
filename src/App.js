@@ -3,7 +3,7 @@ import './App.css';
 import MainContainer from './components/containers/MainContainer';
 import axios from 'axios';
 
-const API_URL = 'https://amatoscar.pt/gap/apis/nos/callshistory.php';
+const API_URL = 'https://amatoscar.pt/gap/apis/nos/callsHistory.php';
 
 function App() {
   const [calls, setCalls] = useState({});
@@ -29,7 +29,7 @@ function App() {
     // Fetch data initially
     getCallData();
 
-    // Set up polling interval to fetch data every 30 sec (adjust as needed)
+    // Set up polling interval to fetch data every 1:30 min (adjust as needed)
     const interval = setInterval(getCallData, 90000);
 
     // Clean up interval on component unmount

@@ -1,6 +1,7 @@
 import React, { Fragment } from 'react'
 import { Col, Row, Spinner } from 'react-bootstrap'
-import { FcCallback, FcMissedCall, FcPhone } from 'react-icons/fc'
+import { BsFillTelephoneXFill, BsTelephoneOutboundFill } from 'react-icons/bs'
+import { FcCallback, FcPhone } from 'react-icons/fc'
 
 const CallsInfo = ({ recebidas, devolvidas, nDevolvidas, perdidas, efetuadas, show }) => {
   return (
@@ -9,7 +10,7 @@ const CallsInfo = ({ recebidas, devolvidas, nDevolvidas, perdidas, efetuadas, sh
         <Col>
           {recebidas >= 0 ? (
             <Fragment>
-              <h4 style={{ color: '#388e3c' }}>{recebidas} <FcPhone size={30} /></h4>
+              <h4 style={{ color: '#388e3c' }}><FcPhone size={30} /> {recebidas}</h4>
 
             </Fragment>
           ) : (
@@ -27,7 +28,7 @@ const CallsInfo = ({ recebidas, devolvidas, nDevolvidas, perdidas, efetuadas, sh
         <Col>
           {devolvidas >= 0 ? (
             <Fragment>
-              <h4 style={{ color: '#42a5f5' }}>{devolvidas} <FcCallback size={30} /></h4>
+              <h4 style={{ color: '#42a5f5' }}><FcCallback size={30} /> {devolvidas}</h4>
 
             </Fragment>
           ) : (
@@ -45,7 +46,7 @@ const CallsInfo = ({ recebidas, devolvidas, nDevolvidas, perdidas, efetuadas, sh
         <Col>
           {nDevolvidas >= 0 ? (
             <Fragment>
-              <h4 style={{ color: '#42a5f5' }}>{nDevolvidas} <FcCallback size={30} /></h4>
+              <h4 style={{ color: '#42a5f5' }}><FcCallback size={30} /> {nDevolvidas}</h4>
 
             </Fragment>
           ) : (
@@ -63,16 +64,19 @@ const CallsInfo = ({ recebidas, devolvidas, nDevolvidas, perdidas, efetuadas, sh
         <Col>
           {perdidas >= 0 ? (
             <div className='lost-calls-container'>
-              <h4 style={{ color: 'white', fontWeight: 'bold' }}>{perdidas} <FcMissedCall size={30} /></h4>
+              <div>
+                <h4 style={{ color: 'white', fontWeight: 'bold' }}><BsFillTelephoneXFill size={25} /> {perdidas}</h4>
+              </div>
+
+              <label style={{ fontSize: 16, color: 'white' }}>Chamadas perdidas </label>
             </div>
           ) : (
             <div>
-              <Spinner style={{ color: '#c62828'}}>
+              <Spinner style={{ color: '#c62828' }}>
                 <span className='visually-hidden'>A carregar...</span>
               </Spinner>
             </div>
           )}
-          <label style={{ fontSize: 16 }}>Chamadas perdidas </label>
         </Col>
       )}
 
@@ -80,7 +84,7 @@ const CallsInfo = ({ recebidas, devolvidas, nDevolvidas, perdidas, efetuadas, sh
         <Col>
           {efetuadas >= 0 ? (
             <Fragment>
-              <h4 style={{ color: '#388e3c' }}>{efetuadas} <FcPhone size={30} /></h4>
+              <h4 style={{ color: '#388e3c' }}><BsTelephoneOutboundFill size={25} /> {efetuadas}</h4>
 
             </Fragment>
           ) : (

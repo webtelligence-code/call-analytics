@@ -19,13 +19,17 @@
 .marquee-v {
   overflow: hidden;
   white-space: nowrap;
-  animation: marquee-v 15s linear infinite;
-  padding: 5px; /* Add this property */
+  animation: marquee-v 120s linear infinite;
+  padding: 5px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
 }
 
 @keyframes marquee-v {
   0% {
-    transform: translateY(100%);
+    transform: translateY(0);
   }
   100% {
     transform: translateY(-100%);
