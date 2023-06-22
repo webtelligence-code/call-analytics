@@ -4,6 +4,7 @@ import HeaderContainer from './HeaderContainer';
 import TopContainer from './TopContainer';
 import BottomContainer from './BottomContainer';
 import SideContainer from './SideContainer';
+import LegendContainer from './LegendContainer';
 
 const MainContainer = ({ calls, lastUpdated }) => {
   return (

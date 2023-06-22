@@ -57,6 +57,11 @@
   margin-block: 10px;
 }
 
+.vertical-bar {
+  border-right: 1px solid #a3a2a2;
+  margin-inline: 10px;
+}
+
 .side-container-item {
   padding: 16px;
   border-bottom: 1px solid #e8e8e8;

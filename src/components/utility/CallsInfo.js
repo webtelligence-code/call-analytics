@@ -9,10 +9,9 @@ const CallsInfo = ({ recebidas, devolvidas, nDevolvidas, perdidas, efetuadas, sh
       {show[0] && (
         <Col>
           {recebidas >= 0 ? (
-            <Fragment>
+            <div className='lost-calls-container' style={{backgroundColor: 'transparent'}}>
               <h4 style={{ color: '#388e3c' }}><FcPhone size={30} /> {recebidas}</h4>
-
-            </Fragment>
+            </div >
           ) : (
             <div>
               <Spinner style={{ color: '#388e3c' }}>
@@ -20,17 +19,15 @@ const CallsInfo = ({ recebidas, devolvidas, nDevolvidas, perdidas, efetuadas, sh
               </Spinner>
             </div>
           )}
-          <label style={{ fontSize: 16 }}>Chamadas Recebidas </label>
         </Col>
       )}
 
       {show[1] && (
         <Col>
           {devolvidas >= 0 ? (
-            <Fragment>
+            <div className='lost-calls-container' style={{backgroundColor: 'transparent'}}>
               <h4 style={{ color: '#42a5f5' }}><FcCallback size={30} /> {devolvidas}</h4>
-
-            </Fragment>
+            </div>
           ) : (
             <div>
               <Spinner style={{ color: '#42a5f5' }}>
@@ -38,17 +35,16 @@ const CallsInfo = ({ recebidas, devolvidas, nDevolvidas, perdidas, efetuadas, sh
               </Spinner>
             </div>
           )}
-          <label style={{ fontSize: 16 }}>Contactos devolvidos </label>
         </Col>
       )}
 
       {show[2] && (
         <Col>
           {nDevolvidas >= 0 ? (
-            <Fragment>
+            <div className='lost-calls-container' style={{backgroundColor: 'transparent'}}>
               <h4 style={{ color: '#42a5f5' }}><FcCallback size={30} /> {nDevolvidas}</h4>
 
-            </Fragment>
+            </div>
           ) : (
             <div>
               <Spinner style={{ color: '#42a5f5' }}>
@@ -56,7 +52,6 @@ const CallsInfo = ({ recebidas, devolvidas, nDevolvidas, perdidas, efetuadas, sh
               </Spinner>
             </div>
           )}
-          <label style={{ fontSize: 16 }}>Contactos não devolvidos </label>
         </Col>
       )}
 
@@ -64,11 +59,7 @@ const CallsInfo = ({ recebidas, devolvidas, nDevolvidas, perdidas, efetuadas, sh
         <Col>
           {perdidas >= 0 ? (
             <div className='lost-calls-container'>
-              <div>
-                <h4 style={{ color: 'white', fontWeight: 'bold' }}><BsFillTelephoneXFill size={25} /> {perdidas}</h4>
-              </div>
-
-              <label style={{ fontSize: 16, color: 'white' }}>Chamadas perdidas </label>
+              <h4 style={{ color: 'white', fontWeight: 'bold' }}><BsFillTelephoneXFill size={25} /> {perdidas}</h4>
             </div>
           ) : (
             <div>
@@ -83,10 +74,9 @@ const CallsInfo = ({ recebidas, devolvidas, nDevolvidas, perdidas, efetuadas, sh
       {show[4] && (
         <Col>
           {efetuadas >= 0 ? (
-            <Fragment>
+            <div className='lost-calls-container' style={{backgroundColor: 'transparent'}}>
               <h4 style={{ color: '#388e3c' }}><BsTelephoneOutboundFill size={25} /> {efetuadas}</h4>
-
-            </Fragment>
+            </div>
           ) : (
             <div>
               <Spinner style={{ color: '#388e3c' }}>
@@ -94,7 +84,6 @@ const CallsInfo = ({ recebidas, devolvidas, nDevolvidas, perdidas, efetuadas, sh
               </Spinner>
             </div>
           )}
-          <label style={{ fontSize: 16 }}>Chamadas efetuadas </label>
         </Col>
       )}
     </Row>

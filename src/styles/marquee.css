@@ -1,8 +1,8 @@
 .marquee-h {
   overflow: hidden;
   white-space: nowrap;
-  animation: marquee-h 15s linear infinite;
-  width: 100%; /* Add this property */
+  animation: marquee-h 30s linear infinite;
+  width: min-content; /* Add this property */
   padding: 0 15px; /* Add this property */
   box-sizing: border-box; /* Add this property */
 }
@@ -29,7 +29,7 @@
 
 @keyframes marquee-v {
   0% {
-    transform: translateY(0);
+    transform: translateY(10%);
   }
   100% {
     transform: translateY(-100%);
