@@ -27,7 +27,7 @@ const SideContainer = ({ percentagens }) => {
         }}
         as="h5"
       >
-        Piores Concessões (teste)
+        Piores Concessões
       </Card.Header>
       <Card.Body style={{ overflow: 'hidden', position: 'relative' }}>
         <div className={extensoesArray && 'marquee-v'}>
